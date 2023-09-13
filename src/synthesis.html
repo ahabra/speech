@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="css/speech.css">
+    <title>SYNTHESIS</title>
+    <script src="js/lib/jquery-3.7.1.js"></script>
+    <script src="js/synthesis/voice.js"></script>
+    <script src="js/synthesis/synthesis.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li><h2>Speech Synthesis Demo</h2></li>
+        </ul>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+        </ul>
+      </nav>
+
+
+      <form>
+        <label for="textToSay">
+          Enter text
+          <input type="text" id="textToSay">
+        </label>
+        <div class="grid">
+            <label for="pitch">
+              Pitch (0 to 2) = <span class="value">1</span>
+              <input type="range" id="pitch" min="0" max="2" value="1" step="0.1">
+            </label>
+            <label for="rate">
+              Rate (0.1 to 10) = <span class="value">1</span>
+              <input type="range" id="rate" min="0.1" max="10" value="1" step="0.1">
+            </label>
+            <label for="volume">
+              Volume (0 to 1) = <span class="value">1</span>
+              <input type="range" id="volume" min="0" max="1" value="1" step="0.1">
+            </label>
+        </div>
+
+
+        <table id="voiceList" class="vscroll" role="grid">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Language</th>
+              <th>isLocal</th>
+              <th>isDefault</th>
+              <th>Selected?</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+        <button id="sayIt">Say it</button>
+      </form>
+
+    </main>
+  </body>
+</html>

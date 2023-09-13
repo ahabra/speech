@@ -1,0 +1,11 @@
+.vscroll {
+  overflow-y: scroll;
+  height: 12em;
+  display: block;
+}
+
+form span.value {
+  color: dodgerblue;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
