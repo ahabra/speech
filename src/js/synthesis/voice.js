@@ -2,11 +2,13 @@ $(function() {
   window.Voice = {
     findEnglishVoices,
     showVoiceTable,
-    findSelectedVoice
+    speak
   }
 
-  function findEnglishVoices(voices) {
-    return voices.filter(v => {
+  const synth = window.speechSynthesis
+
+  function findEnglishVoices() {
+    return synth.getVoices().filter(v => {
       return v.lang.toLowerCase().startsWith('en')
     })
   }
@@ -39,5 +41,13 @@ $(function() {
     return voices.find(v => v.name === name)
   }
 
+  function speak(voices, text) {
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.voice = findSelectedVoice(voices)
+    utterance.pitch = $('#pitch').val()
+    utterance.rate = $('#rate').val()
+    utterance.volume = $('#volume').val()
+    synth.speak(utterance)
+  }
 
 })
