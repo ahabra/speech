@@ -18,10 +18,14 @@ $(function() {
     Voice.showVoiceTable(voices)
   }
 
-  $('#sayIt').click((event)=> {
-    event.preventDefault()
+  $('#sayIt').click(()=> {
     Voice.speak(voices, $('#textToSay').val())
   })
+
+  $('#cancel').click(()=> synth.cancel() )
+  $('#pause').click(()=> synth.pause() )
+  $('#resume').click(()=> synth.resume() )
+
 
   $('input[type=range]').on('input change', function() {
     const self = $(this)

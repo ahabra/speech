@@ -4,7 +4,7 @@
   display: block;
 }
 
-form span.value {
+.sliders span.value {
   color: dodgerblue;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
