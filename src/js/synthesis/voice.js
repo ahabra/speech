@@ -2,10 +2,12 @@ $(function() {
   window.Voice = {
     findEnglishVoices,
     showVoiceTable,
-    speak
+    speak,
+    changeSpeechStatus
   }
 
   const synth = window.speechSynthesis
+  const speechStatus = $('#speechStatus')
 
   function findEnglishVoices() {
     return synth.getVoices().filter(v => {
@@ -47,7 +49,24 @@ $(function() {
     utterance.pitch = $('#pitch').val()
     utterance.rate = $('#rate').val()
     utterance.volume = $('#volume').val()
+    utterance.addEventListener('start', ()=> changeSpeechStatus('red'))
+    utterance.addEventListener('end', ()=> changeSpeechStatus('green'))
+    utterance.addEventListener('pause', ()=> changeSpeechStatus('yellow'))
+    utterance.addEventListener('resume', ()=> changeSpeechStatus('red'))
+
     synth.speak(utterance)
   }
+
+  function changeSpeechStatus(color) {
+    const colors = {
+      red: '&#128308;',
+      green: '&#128994;',
+      yellow: '&#128993'
+    }
+    let symbol = colors[color]
+    symbol = symbol || colors.green
+    speechStatus.html(symbol)
+  }
+
 
 })

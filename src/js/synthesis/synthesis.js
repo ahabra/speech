@@ -22,7 +22,10 @@ $(function() {
     Voice.speak(voices, $('#textToSay').val())
   })
 
-  $('#cancel').click(()=> synth.cancel() )
+  $('#cancel').click(()=> {
+    Voice.changeSpeechStatus('green')
+    synth.cancel()
+  })
   $('#pause').click(()=> synth.pause() )
   $('#resume').click(()=> synth.resume() )
 
