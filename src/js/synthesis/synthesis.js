@@ -9,7 +9,7 @@ $(function() {
       getAndListVoices()  // works in old Chrome, but not new Chrome
     } else {
       // Works in modern Chrome
-    synth.onvoiceschanged = getAndListVoices
+      synth.onvoiceschanged = getAndListVoices
     }
   }
 
