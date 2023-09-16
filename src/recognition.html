@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/pico.min.css">
     <link rel="stylesheet" href="css/speech.css">
     <title>RECOGNITION</title>
+    <script src="js/lib/jquery-3.7.1.js"></script>
+    <script src="js/recognition/recognition.js"></script>
   </head>
   <body>
     <main class="container">
@@ -17,6 +19,15 @@
           <li><a href="./index.html">Home</a></li>
         </ul>
       </nav>
+
+      <div class="grid">
+        <button id="start">Start Listening</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+
+      </div>
+      <article id="spokenText">
+      </article>
     </main>
   </body>
 </html>
