@@ -1,14 +1,22 @@
 // recognition/recognition.js
 $(function() {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-  const recognition = new SpeechRecognition()
+  const $spokenText = $('#spokenText')
+  const $start = $('#start')
 
-  recognition.lang = "en-US"
-  recognition.continuous = true
-  recognition.interimResults = true
-  recognition.maxAlternatives = 1
+  const recognition = initSpeechRecognition()
 
-  $('#start').click(()=> {
+  function initSpeechRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    const recognition = new SpeechRecognition()
+
+    recognition.lang = "en-US"
+    recognition.continuous = false
+    recognition.interimResults = true
+    recognition.maxAlternatives = 1
+    return recognition
+  }
+
+  $start.click(()=> {
     recognition.start()
   })
 
@@ -18,12 +26,35 @@ $(function() {
 
   $('#reset').click(()=> {
     recognition.stop()
-    $('#spokenText').html('')
+    $spokenText.html('')
+  })
+
+  recognition.addEventListener('audiostart', () => {
+    showListening(true)
+  })
+
+  recognition.addEventListener('audioend', () => {
+    showListening(false)
   })
 
   recognition.addEventListener('result', event => {
     const text = event.results[0][0].transcript
-    $('#spokenText').html(text)
+    $spokenText.html(text)
   })
+
+  recognition.addEventListener('end', () => {
+    console.log('Speech ended')
+  })
+
+  function showListening(isListening) {
+    if (isListening) {
+      $start.attr('aria-busy', 'true')
+      $start.addClass('attention')
+    } else {
+      $start.removeAttr('aria-busy')
+      $start.removeClass('attention')
+    }
+  }
+
 
 })
