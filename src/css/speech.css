@@ -27,5 +27,5 @@
 
 .attention {
   background-color: var(--primary);
-  animation: attention 0.8s infinite;
+  animation: attention 0.7s infinite;
 }

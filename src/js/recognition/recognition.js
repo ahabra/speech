@@ -1,7 +1,7 @@
 // recognition/recognition.js
 $(function() {
-  const $spokenText = $('#spokenText')
   const $start = $('#start')
+  const $spokenText = $('#spokenText')
   const $textLog = $('#textLog')
 
   const recognition = initSpeechRecognition()
@@ -45,7 +45,10 @@ $(function() {
   })
 
   recognition.addEventListener('end', () => {
-    $textLog.append(`<li>${$spokenText.val()}</li>\n`)
+    const text = $spokenText.val()
+    if (text.length > 0) {
+      $textLog.append(`<li>${text}</li>\n`)
+    }
     console.log('Speech ended')
   })
 
