@@ -2,6 +2,7 @@
 $(function() {
   const $spokenText = $('#spokenText')
   const $start = $('#start')
+  const $textLog = $('#textLog')
 
   const recognition = initSpeechRecognition()
 
@@ -16,6 +17,7 @@ $(function() {
   }
 
   $start.click(()=> {
+    $spokenText.val('')
     recognition.start()
   })
 
@@ -25,7 +27,8 @@ $(function() {
 
   $('#reset').click(()=> {
     recognition.stop()
-    $spokenText.html('')
+    $spokenText.val('')
+    $textLog.html('')
   })
 
   recognition.addEventListener('audiostart', () => {
@@ -38,10 +41,11 @@ $(function() {
 
   recognition.addEventListener('result', event => {
     const text = event.results[0][0].transcript
-    $spokenText.html(text)
+    $spokenText.val(text)
   })
 
   recognition.addEventListener('end', () => {
+    $textLog.append(`<li>${$spokenText.val()}</li>\n`)
     console.log('Speech ended')
   })
 
