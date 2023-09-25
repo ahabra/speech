@@ -1,0 +1,5 @@
+# Caddy server config file
+# Caddy server makes it easy to run HTTPS on localhost
+localhost
+
+file_server
