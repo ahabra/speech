@@ -9,7 +9,7 @@ $(function() {
   function initSpeechRecognition() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
     const recognition = new SpeechRecognition()
-    recognition.lang = "en-US"
+    recognition.lang = 'en-US'
     recognition.continuous = false
     recognition.interimResults = true
     recognition.maxAlternatives = 1
