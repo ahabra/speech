@@ -9,6 +9,7 @@
 * Prerequisite: install Caddy server to run localhost: https://caddyserver.com/
 * At terminal run `caddy run`
 * When done, at terminal do `Ctrl-C`
+* To update Google Translate access token, run `./update-key.sh`
 
 
 ## Techincal Resources
