@@ -59,16 +59,17 @@ $(function() {
     const lang = getLanguage()
 
     Translate.translateToEnglish(lang.code, text, (isSuccess, english) => {
-      const row = createLogRow(lang.name, text, english)
+      const row = createLogRow(lang.name, text, english, isSuccess)
       $speechLog.prepend(row)
     })
   }
 
-  function createLogRow(language, text, english) {
+  function createLogRow(language, text, english, isSuccess) {
+    const success = isSuccess? '' : 'error'
     return `<tr>
     <td>${language}</td>
     <td>${text}</td>
-    <td>${english}</td>
+    <td class="${success}">${english}</td>
     </tr>`
   }
 
