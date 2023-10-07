@@ -18,13 +18,20 @@ $(function() {
     })
   }
 
-  async function translateToEnglish(sourceLanguage, text) {
+  function translateToEnglish(sourceLanguage, text, callback) {
+    if (sourceLanguage.toLowerCase().startsWith('en')) {
+      return callback(true, text)
+    }
+
     const options = createTranslateRequest(sourceLanguage, text)
-    const response = await fetch(translateUrl, options)
-    const translation = await response.json()
-    // TODO do something with translation
-    console.log(translation)
+    fetch(translateUrl, options)
+    .then(resp => resp.json())
+    .then(json => {
+      const translated = json.data.translations[0].translatedText
+      callback(true, translated)
+    })
   }
+
 
   function createTranslateRequest(sourceLanguage, text) {
     const payload = {

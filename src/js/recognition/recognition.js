@@ -5,6 +5,7 @@ $(function() {
   const $spokenText = $('#spokenText')
   const $textLog = $('#textLog')
   const $language = $('#language')
+  const $speechLog = $('#speechLog tbody')
 
   const recognition = initSpeechRecognition()
 
@@ -49,12 +50,26 @@ $(function() {
 
   recognition.addEventListener('end', () => {
     const text = $spokenText.val()
-    if (text.length > 0) {
-      $textLog.append(`<li>${text}</li>\n`)
-      Translate.translateToEnglish($language.val(), text)
-    }
+    appendLog($language.val(), text)
     console.log('Speech ended')
   })
+
+  function appendLog(language, text) {
+    if (text.length === 0) return
+
+    Translate.translateToEnglish(language, text, (isSuccess, english) => {
+      const row = createLogRow(language, text, english)
+      $speechLog.append(row)
+    })
+  }
+
+  function createLogRow(language, text, english) {
+    return `<tr>
+    <td>${language}</td>
+    <td>${text}</td>
+    <td>${english}</td>
+    </tr>`
+  }
 
   function showListening(isListening) {
     if (isListening) {
