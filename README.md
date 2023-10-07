@@ -15,3 +15,30 @@
 
 ### Demos
 * Web Speech API Demonstration:  https://www.google.com/intl/en/chrome/demos/speech.html
+
+
+### Google Translate
+
+Some useful GC commands:
+
+```bash
+gcloud --help
+gcloud topic --help
+gcloud cheat-sheet
+
+# print my GC access token
+gcloud auth print-access-token
+
+# Get project info
+curl -X GET -H "Authorization: Bearer $(gcloud auth print-access-token)" "https://cloudresourcemanager.googleapis.com/v3/projects/${PROJECT_ID}"
+
+# translate text from request.json
+curl -X POST \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+    -H "x-goog-user-project: ${PROJECT_ID}" \
+    -H "Content-Type: application/json; charset=utf-8" \
+    -d @request.json \
+    "https://translation.googleapis.com/language/translate/v2"
+
+```
+
