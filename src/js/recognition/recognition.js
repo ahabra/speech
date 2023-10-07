@@ -21,7 +21,7 @@ $(function() {
 
   $start.click(()=> {
     $spokenText.val('')
-    recognition.lang = $language.val()
+    recognition.lang = getLanguage().code
     recognition.start()
   })
 
@@ -50,16 +50,17 @@ $(function() {
 
   recognition.addEventListener('end', () => {
     const text = $spokenText.val()
-    appendLog($language.val(), text)
-    console.log('Speech ended')
+    appendLog(text)
   })
 
-  function appendLog(language, text) {
+  function appendLog(text) {
     if (text.length === 0) return
 
-    Translate.translateToEnglish(language, text, (isSuccess, english) => {
-      const row = createLogRow(language, text, english)
-      $speechLog.append(row)
+    const lang = getLanguage()
+
+    Translate.translateToEnglish(lang.code, text, (isSuccess, english) => {
+      const row = createLogRow(lang.name, text, english)
+      $speechLog.prepend(row)
     })
   }
 
@@ -81,5 +82,11 @@ $(function() {
     }
   }
 
+  function getLanguage() {
+    return {
+      code: $language.val(),
+      name: $('option:selected', $language).text()
+    }
+  }
 
 })
