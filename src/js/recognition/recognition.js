@@ -1,8 +1,10 @@
 // recognition/recognition.js
 $(function() {
+  const Translate = window.Translate
   const $start = $('#start')
   const $spokenText = $('#spokenText')
   const $textLog = $('#textLog')
+  const $language = $('#language')
 
   const recognition = initSpeechRecognition()
 
@@ -18,6 +20,7 @@ $(function() {
 
   $start.click(()=> {
     $spokenText.val('')
+    recognition.lang = $language.val()
     recognition.start()
   })
 
@@ -48,6 +51,7 @@ $(function() {
     const text = $spokenText.val()
     if (text.length > 0) {
       $textLog.append(`<li>${text}</li>\n`)
+      Translate.translateToEnglish($language.val(), text)
     }
     console.log('Speech ended')
   })
