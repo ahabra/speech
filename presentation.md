@@ -5,12 +5,12 @@ Presented by: **Abdul Habra**, @ahabra
 
 ## Introduction
 
-### Declerations
+### Expectations
 
 1. You know JavaScript
 2. Ask if you do not understand
 3. You will learn how to write a program that can speak or understand spoken words
-4. You can use the accompanying demo to start your own speech app.
+4. You can use the accompanying demo to start your own speech app
 
 ### Background
 * Web Speech API: introduced by W3C in 2012
@@ -20,6 +20,7 @@ Presented by: **Abdul Habra**, @ahabra
     1. Speech Synthesis: text to speech
     2. Speech Recognition: speech to text
 
+<div style="page-break-after: always"></div>
 
 ## Speech Synthesis
 Definition: Computer converting text to speech
